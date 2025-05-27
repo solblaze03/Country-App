@@ -1,1 +1,19 @@
-<p>by-region works!</p>
+
+<div class="buttons w-screen flex flex-col justify-around pr-8 md:flex-row">
+    @for (region of regions; track $index) {
+        @if (regionSelected() === region) {
+            <button class="btn btn-primary h-12  m-3 grow-1 ">{{region}}</button>
+        }@else{
+            <button class="btn btn-soft h-12 btn-primary m-3 grow-1" (click)="regionSelected.set(region)">{{region}}</button>
+        }
+    }
+</div>
+
+<app-country-list 
+    [countries]="countryResource.value() ?? []" 
+    loadingMessage="Cargando paises..."
+    [isEmpty]="countryResource.value()?.length === 0"
+    [isLoading]="countryResource.isLoading()"
+        
+    ></app-country-list>
+

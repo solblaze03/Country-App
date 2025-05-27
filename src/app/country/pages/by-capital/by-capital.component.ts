@@ -1,10 +1,11 @@
-import {  Component, inject, resource,signal } from '@angular/core';
+import {  Component, inject, signal } from '@angular/core';
 import { CountrySearchInputComponent } from "../../components/country-search-input/country-search-input.component";
 import { CountryListComponent } from "../../components/country-list/country-list.component";
 import { CountryService } from '../../services/country.service';
 import { __asyncValues } from 'tslib';
 import { of } from 'rxjs';
 import { rxResource } from '@angular/core/rxjs-interop'
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -16,21 +17,35 @@ import { rxResource } from '@angular/core/rxjs-interop'
 })
 export class ByCapitalComponent { 
 
-  countryService = inject(CountryService) 
 
-  query = signal('')
+  countryService = inject(CountryService)
+  
+  router = inject(Router)
+
+  activatedRoute = inject(ActivatedRoute)
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? ''
+  
+  
+  query = signal(this.queryParam) 
+  
 
   countryResource = rxResource({
-    request: () => ({query : this.query() }),
+    request: () => ({ query : this.query() }),
     loader : ({ request }) => {
       if( !request.query ) return of([])
+
+        this.router.navigate(['/country/by-capital'], {
+          queryParams: {
+            query: request.query
+          }
+        })
 
       return this.countryService.searchByCapital(request.query)
       
     }
+    
   })
 
-  
 
   // isLoading = signal(false)
   // isError = signal<string | null>(null)

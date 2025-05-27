@@ -17,5 +17,6 @@ export class CountryListComponent {
   errorMessage = input<string| unknown | null>()
   isLoading = input<boolean>()
   isEmpty = input<boolean>()
+  loadingMessage = input.required<string>()
 
  }

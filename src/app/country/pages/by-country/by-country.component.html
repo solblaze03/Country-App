@@ -1,4 +1,4 @@
-<app-country-search-input placeholder="Buscar por país:" (value)="query.set($event)" />
+<app-country-search-input placeholder="Buscar por país:" (value)="query.set($event)" [initialValue]="query()"  />
 
 
 
@@ -9,5 +9,7 @@
     [errorMessage]="countryResource.error()"
     [isEmpty]="countryResource.value()?.length === 0"
     [isLoading]="countryResource.isLoading()"
+    loadingMessage="Cargando paises..."
+    
 
 />
