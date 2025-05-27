@@ -1,0 +1,33 @@
+<div class="container flex flex-col w-full">
+    <div class="stats border border-gray-300 shadow w-full">
+        <div class="stat place-items-center">
+            <div class="stat-title">Pais</div>
+            <div class="stat-value text-cyan-600">{{country().name}}</div>
+
+        </div>
+
+        <div class="stat place-items-center">
+            <div class="stat-title">Población</div>
+            <div class="stat-value text-gray-700">{{country().population | number}}</div>
+
+        </div>
+
+        <div class="stat place-items-center">
+            <div class="stat-title">Capital</div>
+            <div class="stat-value text-rose-500">{{ country().capital }}</div>
+
+        </div>
+
+        <div class="stat place-items-center">
+            <div class="stat-title">Bandera</div>
+            <div class="stat-value text-black">{{ country().flag }}</div>
+        </div>
+    </div>
+
+    
+    <div class="mt-9 mb-9"  >
+        <img class="w-3xl"  alt="daisy" [src]="country().flagSvg" />
+    </div>
+        
+
+</div>

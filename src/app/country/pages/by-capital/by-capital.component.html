@@ -1,46 +1,6 @@
-<section class="flex flex-row gap-2 mt-2">
-  
-    <input
-      type="text"
-      class="input"
-      input-bordered
-      mr-2
-      w-56
-      placeholder="Buscar por capital:"
-      autofocus
-      (keyup.enter)="onSearch(txtSearch.value)"
-      #txtSearch
-    />
+<app-country-search-input placeholder="Buscar por capital de mi país:" (value)="query.set($event)" />
 
-    <button class="btn btn-primary" (click)="onSearch(txtSearch.value)">Buscar</button>
- 
-</section>
 
-<div class="overflow-x-auto mt-5">
-  <table class="table">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Icono</th>
-        <th>Bandera</th>
-        <th>Nombre</th>
-        <th>Capital</th>
-        <th>Población</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <th>1</th>
-        <th>:)</th>
-        <th>COL</th>
-        <th>Nala</th>
-        <th>Valencia</th>
-        <th>Torrent</th>
-        <th></th>
-      </tr>
-    </tbody>
-    
-  </table>
-</div>
+@if (countryResource.hasValue()) {
+  <app-country-list [countries]="countryResource.value()!" />
+}

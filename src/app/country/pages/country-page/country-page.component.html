@@ -1,0 +1,9 @@
+
+
+@if( countryResource.error() ){
+    <app-not-found message="No se encontro el país seleccionado"></app-not-found>
+}
+
+@if (countryResource.hasValue()) {
+    <app-country-information [country]="countryResource.value()!" ></app-country-information>
+}
